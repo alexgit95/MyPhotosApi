@@ -8,7 +8,8 @@
 | recupere toutes les photos liées à un evenement | |
 | recupere toutes les photos sans evenements | |
 | recupere toutes les photos situé à moins de 5 km d'un endroit  | |
-| renvoi el binaire d'une phot en fonction de son id  | |
+| renvoi le binaire d'une phot en fonction de son id  | |
+| met la photo en tant que favorite  | |
 
 ## API Evenements
 
