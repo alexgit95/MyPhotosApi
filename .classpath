@@ -64,5 +64,6 @@
 	<classpathentry kind="lib" path="target/dependency/tomcat-embed-websocket-9.0.13.jar"/>
 	<classpathentry kind="lib" path="target/dependency/validation-api-2.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="target/dependency/xmlunit-core-2.6.2.jar"/>
+	<classpathentry kind="lib" path="target/dependency/commons-io-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

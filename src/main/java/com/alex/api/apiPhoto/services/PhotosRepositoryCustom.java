@@ -7,12 +7,11 @@ import main.java.com.alex.api.apiPhoto.model.Evenements;
 import main.java.com.alex.api.apiPhoto.model.Photos;
 
 public interface PhotosRepositoryCustom {
-	
-	List<Photos> findPhotosBetweenTwoDates(Date debut, Date fin);
-	List<Photos> findPhotosByEvenement(Evenements evt);
+	List<Photos> findPhotosBetweenTwoDates(Date start, Date end);
+	List<Photos> findPhotosByEvenement(String idEvt);
 	List<Photos> findPhotosWithoutEvenements();
 	List<Photos> findPhotosByGeolocation(double lattitude, double longitude);
 	Photos findPhotosById(String id);
-	void updateFavoritePhotos(Photos photo);
+	void updateFavoritePhotos(String id);
 
 }
