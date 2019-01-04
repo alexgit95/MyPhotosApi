@@ -25,6 +25,6 @@
 
 Une fois la liste des photos a� afficher recuperer je lance la page :
 
-1- On affiche les 5 premieres photos de manières verticales (tant qu'elles ne sont pas chargées on mais en attente)
+1- On affiche les 5 premieres photos de manieres verticales (tant qu'elles ne sont pas chargées on mais en attente)
 
-2- On scroll vers la bas automatiquement d'une photo à chaque fois qu'une nouvelle a bien été affichée
+2- On scroll vers la bas automatiquement d'une photo a chaque fois qu'une nouvelle a bien ete affichee
