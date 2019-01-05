@@ -5,11 +5,13 @@
 | Fonctionnalite  | Realise | Url |
 | ------------- | ------------- |  ------------- | 
 | recupere toutes les photos entre 2 dates | X | /api/v1/photos/date/{datedebut}/{datefin} |
-| recupere toutes les photos liees a  un evenement | X | /api/v1/photos/evt/{id} |
+| recupere toutes les photos liees aÂ  un evenement | X | /api/v1/photos/evt/{id} |
 | recupere toutes les photos sans evenements | X | /api/v1/photos/sansevt |
-| recupere toutes les photos situe a  moins de 5 km d'un endroit  | X | /api/v1/photos/geo/{lattitude}/{longitude} |
+| recupere toutes les photos situe aÂ  moins de 5 km d'un endroit  | X | /api/v1/photos/geo/{lattitude}/{longitude} |
 | renvoi le binaire d'une photo en fonction de son id  | X | /api/v1/photos/binary/{id} |
 | met la photo en tant que favorite  | X | /api/v1/photos/fav/{id} |
+| supprime la photo en tant que favorite  |  | /api/v1/photos/fav/delete/{id} |
+| recupere toutes les photos favorites entre 2 dates |  | /api/v1/photos/date/fav/{datedebut}/{datefin} |
 
 ## API Evenements
 
@@ -23,7 +25,7 @@
 
 ## Slideshow
 
-Une fois la liste des photos a  afficher recuperer je lance la page :
+Une fois la liste des photos aÂ  afficher recuperer je lance la page :
 
 1- On affiche les 5 premieres photos de manieres verticales (tant qu'elles ne sont pas chargees on mais en attente)
 

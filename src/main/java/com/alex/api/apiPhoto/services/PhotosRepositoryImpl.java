@@ -19,9 +19,6 @@ public class PhotosRepositoryImpl implements PhotosRepositoryCustom {
 
 	@Override
 	public List<Photos> findPhotosBetweenTwoDates(Date start, Date end) {
-		
-		
-		
 		Query query = new Query(Criteria.where("datePriseVue").gt(start)
 				.andOperator(Criteria.where("datePriseVue").lt(end)));
 		
@@ -72,6 +69,25 @@ public class PhotosRepositoryImpl implements PhotosRepositoryCustom {
 	@Autowired
 	public PhotosRepositoryImpl(MongoTemplate mongoTemplate) {
 		this.mongoTemplate = mongoTemplate;
+	}
+
+	@Override
+	public Photos deleteFavorite(String id) {
+		Query query = new Query(Criteria.where("_id").is(id));
+		Photos findOne = mongoTemplate.findOne(query, Photos.class);
+		findOne.estFavoris=false;
+		mongoTemplate.save(findOne);
+		return findOne;
+	}
+
+	@Override
+	public List<Photos> findFavoritesPhotosBetweenTwoDates(Date start, Date end) {
+		Query query = new Query(Criteria.where("datePriseVue").gt(start)
+				.andOperator(Criteria.where("datePriseVue").lt(end),Criteria.where("estFavoris").is(true)));
+		
+		
+		List<Photos> find = mongoTemplate.find(query, Photos.class);
+		return find;
 	}
 
 }

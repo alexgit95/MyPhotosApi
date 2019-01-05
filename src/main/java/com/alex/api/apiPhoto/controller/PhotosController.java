@@ -100,6 +100,27 @@ public class PhotosController {
 	}
 	
 	
+	@RequestMapping( value="/date/fav/{datedebut}/{datefin}", method = RequestMethod.GET)
+	public @ResponseBody List<Photos> getPhotosByDateFav(@PathVariable String datedebut,@PathVariable String datefin) throws ParseException {
+		System.out.println("dateDebut:"+datedebut+", dateFin:"+datefin);
+		datedebut = new String(Base64.getDecoder().decode(datedebut));
+		datefin = new String(Base64.getDecoder().decode(datefin));
+		System.out.println("dateDebut:"+datedebut+", dateFin:"+datefin);
+		Date debut=sdf.parse(datedebut);
+		Date fin=sdf.parse(datefin);
+		List<Photos> findPhotosBetweenTwoDates = repositoryPhotos.findFavoritesPhotosBetweenTwoDates(debut, fin);
+		return findPhotosBetweenTwoDates;
+
+	}
+	
+	@RequestMapping( value="/fav/delete/{id}", method = RequestMethod.POST)
+	public @ResponseBody Photos deleteFavorite(@PathVariable String id)  {
+		System.out.println("deleteFavorite");
+		Photos deleteFavorite = repositoryPhotos.deleteFavorite(id);
+		return deleteFavorite;
+	}
+	
+	
 	
 
 }
