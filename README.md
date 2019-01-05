@@ -10,8 +10,8 @@
 | recupere toutes les photos situe a  moins de 5 km d'un endroit  | X | /api/v1/photos/geo/{lattitude}/{longitude} |
 | renvoi le binaire d'une photo en fonction de son id  | X | /api/v1/photos/binary/{id} |
 | met la photo en tant que favorite  | X | /api/v1/photos/fav/{id} |
-| supprime la photo en tant que favorite  |  | /api/v1/photos/fav/delete/{id} |
-| recupere toutes les photos favorites entre 2 dates |  | /api/v1/photos/date/fav/{datedebut}/{datefin} |
+| supprime la photo en tant que favorite  | X | /api/v1/photos/fav/delete/{id} |
+| recupere toutes les photos favorites entre 2 dates | X | /api/v1/photos/date/fav/{datedebut}/{datefin} |
 
 ## API Evenements
 
