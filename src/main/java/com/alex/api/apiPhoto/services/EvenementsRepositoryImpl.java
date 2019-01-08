@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -19,6 +20,7 @@ public class EvenementsRepositoryImpl implements EvenementsRepositoryCustom {
 	@Override
 	public List<Evenements> findAllValidatedEvents() {
 		Query query = new Query(Criteria.where("valid").is(true));
+		query.with(new Sort(Sort.Direction.ASC,"debut"));
 		List<Evenements> findAllNoValidatedEvents = mongoTemplate.find(query, Evenements.class);
 		return findAllNoValidatedEvents;
 	}
@@ -34,6 +36,7 @@ public class EvenementsRepositoryImpl implements EvenementsRepositoryCustom {
 	@Override
 	public List<Evenements> findAllNoValidatedEvents() {
 		Query query = new Query(Criteria.where("valid").is(false));
+		query.with(new Sort(Sort.Direction.ASC,"debut"));
 		List<Evenements> findAllNoValidatedEvents = mongoTemplate.find(query, Evenements.class);
 		return findAllNoValidatedEvents;
 	}
