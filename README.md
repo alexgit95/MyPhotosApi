@@ -36,7 +36,7 @@ Une fois la liste des photos a  afficher recuperer je lance la page :
 
 java -jar apiPhoto-0.0.1-SNAPSHOT.jar --spring.config.location=file:/emplacement/absolue/vers/application.properties
 
-###Voici le contenu du fichier application.properties :
+### Voici le contenu du fichier application.properties :
 
 spring.data.mongodb.database=myphotos
 
