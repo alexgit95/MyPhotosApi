@@ -30,3 +30,19 @@ Une fois la liste des photos a  afficher recuperer je lance la page :
 1- On affiche les 5 premieres photos de manieres verticales (tant qu'elles ne sont pas chargees on mais en attente)
 
 2- On scroll vers la bas automatiquement d'une photo a chaque fois qu'une nouvelle a bien ete affichee
+
+
+## Demarrer l'api
+
+java -jar apiPhoto-0.0.1-SNAPSHOT.jar --spring.config.location=file:/emplacement/absolue/vers/application.properties
+
+###Voici le contenu du fichier application.properties :
+
+spring.data.mongodb.database=myphotos
+
+spring.data.mongodb.uri=mongodb+srv://USERNAME:PASSWORD@cluster0-6neyj.mongodb.net/test?retryWrites=true
+
+logging.level.org.springframework.data=error
+logging.level.=error
+
+
