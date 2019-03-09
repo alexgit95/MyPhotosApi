@@ -1,0 +1,52 @@
+image: maven:3.6-jdk-8-slim
+
+stages:
+#  - build
+#  - tag
+  - deploy
+
+#build:
+#  stage: build
+#  script: mvn package
+#  artifacts:
+#    paths:
+#      - target/apiPhoto-0.0.1-SNAPSHOT.jar
+#tag:
+#  stage: tag
+#  before_script:
+#    - apt-get update -qq && apt-get install -y -qq git
+#    - git config --global user.email "you@example.com"
+#    - git config --global user.name "Your Name"
+#    - mkdir repoDistant
+#    - pwd
+#    - cd repoDistant
+#    - pwd
+#    
+#  script: git tag -a 0.1 -m "my version0.1"
+#  after_script :
+#    - echo "toto"
+deploiement:
+  stage: deploy
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq git
+    - git config --global user.email "you@example.com"
+    - git config --global user.name "Alex B"
+    - cd /builds/alexgit95/
+    - git clone https://github.com/alexgit95/MyPhotosApiRelease.git
+    - ls
+  script: 
+    - cd /builds/alexgit95/myphotosapi
+    - mvn clean deploy
+  after_script:
+    - cp -rf /builds/alexgit95/myphotosapi/target/mvn-repo/com/alex/api/apiPhoto /builds/alexgit95/MyPhotosApiRelease/
+    - ls -al /builds/alexgit95/MyPhotosApiRelease/
+    - cd /builds/alexgit95/MyPhotosApiRelease/
+    - git remote set-url origin https://alexgit95:tKUt5EFOyX1k@github.com/alexgit95/MyPhotosApiRelease.git
+    - git add *
+    - git commit -m "Nouvelle release"
+    - git push origin
+  artifacts:
+    paths:
+      - target/apiPhoto-0.0.1-SNAPSHOT.jar
+
+
