@@ -36,7 +36,7 @@ deploiement:
     - ls
   script: 
     - cd /builds/alexgit95/myphotosapi
-    - mvn clean deploy
+    - mvn clean package
   after_script:
     - cp -rf /builds/alexgit95/myphotosapi/target/mvn-repo/com/alex/api/apiPhoto /builds/alexgit95/MyPhotosApiRelease/
     - ls -al /builds/alexgit95/MyPhotosApiRelease/
