@@ -37,7 +37,7 @@ deploiement:
     - echo $PASSWORD
   script: 
     - cd /builds/alexgit95/myphotosapi
-    - mvn clean package
+    - mvn clean package -Dversionjar=$VERSIONJAR
   after_script:
     - cp -rf target/apiPhoto-0.0.1-SNAPSHOT.jar /builds/alexgit95/MyPhotosApiRelease/
     - ls -al /builds/alexgit95/MyPhotosApiRelease/
