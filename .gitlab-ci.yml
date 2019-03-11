@@ -34,7 +34,6 @@ deploiement:
     - cd /builds/alexgit95/
     - git clone https://github.com/alexgit95/MyPhotosApiRelease.git
     - ls
-    - echo $PASSWORD
   script: 
     - cd /builds/alexgit95/myphotosapi
     - mvn clean package -Dversionjar=$VERSIONJAR
