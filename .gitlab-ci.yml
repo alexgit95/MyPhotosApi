@@ -39,7 +39,7 @@ deploiement:
     - cd /builds/alexgit95/myphotosapi
     - mvn clean package
   after_script:
-    - cp -rf /builds/alexgit95/myphotosapi/target/mvn-repo/com/alex/api/apiPhoto /builds/alexgit95/MyPhotosApiRelease/
+    - cp -rf target/apiPhoto-0.0.1-SNAPSHOT.jar /builds/alexgit95/MyPhotosApiRelease/
     - ls -al /builds/alexgit95/MyPhotosApiRelease/
     - cd /builds/alexgit95/MyPhotosApiRelease/
     - git remote set-url origin https://alexgit95:$PASSWORD@github.com/alexgit95/MyPhotosApiRelease.git
