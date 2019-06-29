@@ -76,6 +76,20 @@ Puis faire :
 
 docker build -t myphotosapi .
 
+```
+
+Ou sur un raspberry
+
+```
+
+docker build -t myphotosapi -f Dockerfile-rasp  .
+
+```
+
+Puis pour finir :
+
+```
+
 docker run -p 8080:8080 myphotosapi
 
 ```
