@@ -46,3 +46,38 @@ logging.level.org.springframework.data=error
 logging.level.=error
 
 
+### Avec Docker
+
+
+```
+
+git clone https://github.com/alexgit95/MyPhotosApi.git
+
+cd MyPhotosApi
+
+```
+
+Modifier le fichier application.properties (exemple avec mongodb atlas) :
+
+```
+
+spring.data.mongodb.database=photos
+spring.data.mongodb.uri=mongodb+srv://USERNAME:PASSWORD@cluster0-XXXX.mongodb.net/test?retryWrites=true&w=majority
+
+
+logging.level.org.springframework.data=error
+logging.level.=error
+
+```
+
+Puis faire :
+
+```
+
+docker build -t myphotosapi .
+
+docker run -p 8080:8080 myphotosapi
+
+```
+
+
