@@ -93,7 +93,7 @@ public class PhotosController {
 		Encoder encoder = Base64.getEncoder();
 		String chemin = encoder.encodeToString(findPhotosById.chemin.getBytes());
 		String ip = encoder.encodeToString(request.getRemoteAddr().getBytes());
-		String call = "http://localhost:8282/binaire/" + ip + "/" + chemin;
+		String call = "http://192.168.1.49:8282/binaire/" + ip + "/" + chemin;
 		System.out.println(call);
 		ResponseEntity<byte[]> response = restTemplate.getForEntity(call, byte[].class);
 		HttpHeaders headers = new HttpHeaders();
