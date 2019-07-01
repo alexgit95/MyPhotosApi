@@ -99,7 +99,7 @@ public class PhotosController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
-
+		System.out.println(new String(response.getBody()));
 		return responseEntity;
 
 		/*
