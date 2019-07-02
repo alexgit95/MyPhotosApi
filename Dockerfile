@@ -11,4 +11,4 @@ COPY application.properties /apps/application.properties
 
 WORKDIR /apps
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "apiPhoto-null.jar", "--spring.config.location=file:/apps/application.properties"]
+ENTRYPOINT ["java", "-jar", "apiPhoto-1.0.0.jar", "--spring.config.location=file:/apps/application.properties"]
