@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import main.java.com.alex.api.apiPhoto.model.Photos;
+import main.java.com.alex.api.apiPhoto.model.Repertoire;
 
 @Component
 public class PhotosRepositoryImpl implements PhotosRepositoryCustom {
@@ -88,6 +90,14 @@ public class PhotosRepositoryImpl implements PhotosRepositoryCustom {
 		
 		List<Photos> find = mongoTemplate.find(query, Photos.class);
 		return find;
+	}
+
+	@Override
+	public List<Photos> findPhotosByDirectory(String directory) {
+		Query query = new Query(Criteria.where("chemin").regex(directory));
+		query.with(new Sort(Sort.Direction.ASC,"chemin"));
+		List<Photos> findPhotosRep = mongoTemplate.find(query, Photos.class);
+		return findPhotosRep;
 	}
 
 }

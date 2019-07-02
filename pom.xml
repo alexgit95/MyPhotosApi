@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.alex.api</groupId>
 	<artifactId>apiPhoto</artifactId>
-	<version>${versionjar}</version>
+	<version>1.0.0</version>
 	<name>apiPhoto</name>
 	<description>Demo project for Spring Boot</description>
 

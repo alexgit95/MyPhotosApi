@@ -14,5 +14,7 @@ public interface PhotosRepositoryCustom {
 	void updateFavoritePhotos(String id);
 	Photos deleteFavorite(String id);
 	List<Photos> findFavoritesPhotosBetweenTwoDates(Date start, Date end);
+	
+	List<Photos> findPhotosByDirectory(String directory);
 
 }

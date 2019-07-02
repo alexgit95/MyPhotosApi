@@ -73,6 +73,14 @@ public class PhotosController {
 		return findPhotosByEvenement;
 	}
 	
+	@RequestMapping( value="/dir/{chemin}", method = RequestMethod.GET)
+	public @ResponseBody List<Photos> getPhotosByDirectory(@PathVariable String chemin)  {
+		System.out.println("getPhotosByDirectory");
+		chemin=new String(Base64.getDecoder().decode(chemin));
+		List<Photos> findPhotosByEvenement = repositoryPhotos.findPhotosByDirectory(chemin);
+		return findPhotosByEvenement;
+	}
+	
 	@RequestMapping( value="/fav/{id}", method = RequestMethod.POST)
 	public @ResponseBody List<Photos> setFavorite(@PathVariable String id)  {
 		System.out.println("setFavorite");
