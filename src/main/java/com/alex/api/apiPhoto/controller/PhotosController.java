@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.Gson;
+
 import main.java.com.alex.api.apiPhoto.model.Photos;
 import main.java.com.alex.api.apiPhoto.services.PhotosRepositoryCustom;
 
@@ -38,6 +40,8 @@ public class PhotosController {
 	
 	@Autowired
 	private PhotosRepositoryCustom repositoryPhotos;
+	
+	private String urlWSFichiers="http://192.168.1.49:8282/";
 	
 	@RequestMapping( value="/date/{datedebut}/{datefin}", method = RequestMethod.GET)
 	public @ResponseBody List<Photos> getPhotosByDate(@PathVariable String datedebut,@PathVariable String datefin) throws ParseException {
@@ -88,6 +92,20 @@ public class PhotosController {
 		return null;
 	}
 	
+	@RequestMapping( value="/dir/list/{chemin}", method = RequestMethod.GET)
+	public @ResponseBody List<String> getPhotosFilePathByDirectory(@PathVariable String chemin)  {
+		System.out.println("getPhotosFilePathByDirectory");
+		
+		RestTemplate restTemplate = new RestTemplate();
+		String call=urlWSFichiers+"list/repo/"+chemin;
+		System.out.println(call);
+		ResponseEntity<String> response = restTemplate.getForEntity(call, String.class);
+		Gson gson = new Gson();
+		List<String> fromJson = gson.fromJson(response.getBody(), List.class);
+		return fromJson;
+	}
+	
+	
 	@RequestMapping(value = "/binary/{id}", method = RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
 
 	public ResponseEntity<byte[]> getImageAsResponseEntity(@PathVariable String id, HttpServletRequest request)
@@ -101,39 +119,14 @@ public class PhotosController {
 		Encoder encoder = Base64.getEncoder();
 		String chemin = encoder.encodeToString(findPhotosById.chemin.getBytes());
 		String ip = encoder.encodeToString(request.getRemoteAddr().getBytes());
-		String call = "http://192.168.1.49:8282/binaire/" + ip + "/" + chemin;
+		String call = urlWSFichiers+"binaire/" + ip + "/" + chemin;
 		System.out.println(call);
 		ResponseEntity<byte[]> response = restTemplate.getForEntity(call, byte[].class);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
-		//System.out.println(new String(response.getBody()));
 		return responseEntity;
 
-		/*
-		 * 
-		 * 
-		 * 
-		 * if(findPhotosById!=null) {
-		 * 
-		 * HttpHeaders headers = new HttpHeaders();
-		 * 
-		 * InputStream in = new FileInputStream(new File(findPhotosById.chemin));
-		 * 
-		 * byte[] media = IOUtils.toByteArray(in);
-		 * 
-		 * headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-		 * 
-		 * 
-		 * 
-		 * ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers,
-		 * HttpStatus.OK);
-		 * 
-		 * return responseEntity;
-		 * 
-		 * }
-		 * 
-		 */
 
 	}
 	
