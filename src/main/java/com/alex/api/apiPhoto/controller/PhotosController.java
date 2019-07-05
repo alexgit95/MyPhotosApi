@@ -130,6 +130,23 @@ public class PhotosController {
 
 	}
 	
+	@RequestMapping(value = "/binary/path/{chemin}", method = RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getImageByPath(@PathVariable String chemin, HttpServletRequest request)
+			throws IOException {
+
+		Encoder encoder = Base64.getEncoder();
+		RestTemplate restTemplate = new RestTemplate();
+		String ip = encoder.encodeToString(request.getRemoteAddr().getBytes());
+		String call = urlWSFichiers+"binaire/" + ip + "/" + chemin;
+		System.out.println(call);
+		ResponseEntity<byte[]> response = restTemplate.getForEntity(call, byte[].class);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
+		return responseEntity;
+
+}
+	
 	
 	@RequestMapping( value="/date/fav/{datedebut}/{datefin}", method = RequestMethod.GET)
 	public @ResponseBody List<Photos> getPhotosByDateFav(@PathVariable String datedebut,@PathVariable String datefin) throws ParseException {
