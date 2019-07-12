@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,8 +41,8 @@ public class PhotosController {
 	
 	@Autowired
 	private PhotosRepositoryCustom repositoryPhotos;
-	
-	private String urlWSFichiers="http://192.168.1.49:8282/";
+	@Value("${localisation.service.binaire}")
+	private String urlWSFichiers;
 	
 	@RequestMapping( value="/date/{datedebut}/{datefin}", method = RequestMethod.GET)
 	public @ResponseBody List<Photos> getPhotosByDate(@PathVariable String datedebut,@PathVariable String datefin) throws ParseException {
