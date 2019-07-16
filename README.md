@@ -23,6 +23,16 @@
 | recupere un evenement non valide au hasard | X | /api/v1/evenements/validated/no/one |
 | modifie le titre d'un evenement | X | /api/v1/evenements/edit/nom/{id}/{name} |
 
+
+## API Repertoires
+
+| Fonctionnalite  | Realise | Url |
+| ------------- | ------------- | ------------- | 
+| recupere tous les chemins de repertoire à la racine | X | /api/v1/repos/racine |
+| recupere tous les repertoires presents à un emplacement donné | X | /api/v1/repos/directory/{cheminParent} |
+
+
+
 ## Slideshow
 
 Une fois la liste des photos a  afficher recuperer je lance la page :
