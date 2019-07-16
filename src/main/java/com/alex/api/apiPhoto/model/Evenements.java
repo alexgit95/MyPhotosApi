@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
-public class Evenements {
+public class Evenements implements Comparable<Evenements>{
 	@Id
 	public String id;
 	public String nom;
@@ -22,7 +22,10 @@ public class Evenements {
 	public String toString() {
 		return "Evenement [id=" + id + ", nom=" + nom + ", debut=" + debut + ", fin=" + fin + "]";
 	}
-	
+	@Override
+	public int compareTo(Evenements o) {
+		return debut.compareTo(o.debut);
+	}
 	
 	
 	

@@ -3,6 +3,7 @@ package main.java.com.alex.api.apiPhoto.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class EvenementsController {
 	public @ResponseBody List<Evenements> getAllValidated(){
 		System.out.println("validated");
 		List<Evenements> findAllValidatedEvents = repositoryEvenements.findAllValidatedEvents();
+		Collections.sort(findAllValidatedEvents);
 		return findAllValidatedEvents;
 	}
 	
@@ -39,6 +41,7 @@ public class EvenementsController {
 	public @ResponseBody List<Evenements> getAllNoValidated(){
 		System.out.println("no validated");
 		List<Evenements> getAllNoValidated = repositoryEvenements.findAllNoValidatedEvents();
+		Collections.sort(getAllNoValidated);
 		return getAllNoValidated;
 	}
 	
