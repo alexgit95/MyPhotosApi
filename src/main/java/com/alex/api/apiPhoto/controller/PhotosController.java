@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
@@ -140,11 +141,25 @@ public class PhotosController {
 		String ip = encoder.encodeToString(request.getRemoteAddr().getBytes());
 		String call = urlWSFichiers+"binaire/" + ip + "/" + chemin;
 		System.out.println(call);
-		ResponseEntity<byte[]> response = restTemplate.getForEntity(call, byte[].class);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
-		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
-		return responseEntity;
+		try {
+			ResponseEntity<byte[]> response = restTemplate.getForEntity(call, byte[].class);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
+			return responseEntity;
+		}catch(HttpClientErrorException he) {
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(he.getResponseBodyAsByteArray(), headers, he.getStatusCode());
+			return responseEntity;
+		}
+		
+		
+		
+		
+			
+		
+		
 
 }
 	
